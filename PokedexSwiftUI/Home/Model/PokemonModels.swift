@@ -23,12 +23,6 @@ struct PokemonDetail: Codable {
     var types: [Types]
 }
 
-struct CompletePokemonDetail: Codable {
-    var id: Int
-    var sprites: Sprites
-    var types: [Types]
-}
-
 struct Sprites: Codable {
     var front_default: String
 }
