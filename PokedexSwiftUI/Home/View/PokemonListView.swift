@@ -13,20 +13,29 @@ struct PokemonListView: View {
     @State private var isLoadingAnimating = false
     
     var body: some View {
-        VStack {
-            searchView
-            Divider()
-            filterButtons
-            List {
-                ForEach(viewModel.pokemons, id: \.id) { pokemon in
-                    PokemonListCellView(viewModel: pokemon)
+        
+        NavigationView {
+            VStack {
+                searchView
+                Divider()
+                filterButtons
+                List {
+                    ForEach(viewModel.pokemons, id: \.id) { pokemon in
+                        
+                        ZStack {
+                            PokemonListCellView(viewModel: pokemon)
+                                .listRowSeparator(.hidden)
+                            NavigationLink(destination: PokemonDetailView(viewModel: viewModel.makePokemonDetailViewModel(detailUrl: pokemon.pokemon.url))) {
+                            }.opacity(0)
+                        }
                         .listRowSeparator(.hidden)
+                    }
+                    if viewModel.offSet < 145 {
+                        loadingImage
+                    }
                 }
-                if viewModel.offSet < 145 {
-                    loadingImage
-                }
+                .listStyle(.plain)
             }
-            .listStyle(.plain)
         }
     }
     

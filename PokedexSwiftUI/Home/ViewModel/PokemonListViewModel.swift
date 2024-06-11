@@ -39,4 +39,8 @@ class PokemonListViewModel: ObservableObject {
             PokemonListCellViewModel(pokemon: pokemon)
         }
     }
+    
+    public func makePokemonDetailViewModel(detailUrl: String) -> PokemonDetailViewModel {
+        return PokemonDetailViewModel(detailUrl: detailUrl)
+    }
 }
